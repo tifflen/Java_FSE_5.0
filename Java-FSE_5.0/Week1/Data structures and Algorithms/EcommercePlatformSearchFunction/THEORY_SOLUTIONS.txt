@@ -1,0 +1,85 @@
+Theory Solutions: Exercise 2 — E-commerce Platform Search Function
+
+1) Understand Asymptotic Notation (Big O)
+- Big O notation describes how an algorithm’s time/space usage grows with input size n.
+- It focuses on the dominant growth term (ignores constants and lower-order terms).
+- Best/average/worst cases help describe typical performance variability.
+
+Search best/average/worst cases (comparison-based searches)
+A) Linear Search (search in an unsorted array)
+- Best case: O(1)
+  (target is at the first index)
+- Average case: O(n)
+  (target is equally likely anywhere)
+- Worst case: O(n)
+  (target not present, or at the last index)
+
+B) Binary Search (search in a sorted array)
+- Best case: O(1)
+  (target is at the middle index)
+- Average case: O(log n)
+- Worst case: O(log n)
+  (target not present; the search interval halves until empty)
+
+2) Setup: Product class
+Attributes needed for searching:
+- productId (used as the search key)
+- productName
+- category
+
+3) Implementation: Linear Search and Binary Search
+A) Linear Search (solution)
+Approach:
+- Traverse the array from index 0 to n-1.
+- If products[i].productId == targetProductId, return i.
+- If you finish the array without finding a match, return -1.
+
+Time Complexity:
+- O(n) in average and worst case.
+- O(1) in best case.
+
+B) Binary Search (solution)
+Precondition:
+- The array must be SORTED in ascending order by productId.
+
+Approach:
+- Maintain left and right bounds.
+- Compute mid = left + (right-left)/2.
+- Compare products[mid].productId with targetProductId.
+  - If equal: return mid
+  - If mid value < target: search right half
+  - If mid value > target: search left half
+- If bounds cross, return -1.
+
+Time Complexity:
+- O(log n) average and worst case.
+- O(1) best case.
+
+4) Analysis: Compare Linear vs Binary Search
+Complexity comparison (by cases)
+- Linear Search:
+  - Best: O(1)
+  - Avg:  O(n)
+  - Worst: O(n)
+- Binary Search:
+  - Best: O(1)
+  - Avg:  O(log n)
+  - Worst: O(log n)
+
+Which is more suitable for your platform and why?
+- For fast lookups on large catalogs, Binary Search is better because O(log n) scales much faster than O(n).
+- However, Binary Search requires the data to be sorted by the key (productId). If the catalog changes frequently, keeping it sorted may add overhead.
+
+Practical e-commerce note (recommended beyond this exercise)
+- Real e-commerce systems usually use:
+  - HashMap/Indexing for near O(1) average lookup, or
+  - Database indexes/search engines for scalable multi-attribute queries.
+
+Final decision guideline
+- Use Binary Search when:
+  - You can maintain sorted data by productId, and
+  - You need fast repeated lookups.
+- Use Linear Search when:
+  - Data is small, or
+  - Sorting/maintaining order is not worth the overhead.
+

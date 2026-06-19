@@ -1,0 +1,77 @@
+Theory Solutions — Financial Forecasting (Recursive)
+
+This file provides the theory answers that match the implementation in:
+Week1/FinancialForecastingRecursive/FinancialForecastingRecursive.java
+
+1) Explain recursion and how it is used in the forecasting logic
+- In this program, we forecast the value V[t] for t years ahead.
+- The recurrence used is:
+  V[t] = V[t-1] * (1 + growthRates[t-1])
+- A naive recursive function computes V[k] by repeatedly computing V[k-1], V[k-2], ..., V[0].
+- Base case:
+  - If k == 0, return baseValue (V[0]).
+- Recursive step:
+  - Compute V[k-1] recursively, then apply the growth rate from year (k-1) to year k.
+
+2) Best practice: base cases and input validation
+- Base case prevents infinite recursion:
+  - If k == 0, stop recursion.
+- Input validation prevents invalid transitions:
+  - Ensure growthRates length is at least k.
+  - k must be >= 0.
+
+3) Time complexity of the naive recursive solution
+- In this implementation, each call for forecastRecursive(k) makes exactly one recursive call:
+  forecastRecursive(k-1) and then computes the multiplication.
+- Therefore the number of calls grows linearly with k.
+- Time complexity (naive recursion):
+  - O(k)
+
+4) Space complexity of the naive recursive solution
+- The recursion depth is k (the call stack grows with k).
+- Space complexity:
+  - O(k) due to call stack.
+
+5) When would recursion become expensive? (general concept)
+- Recursion becomes expensive when it branches into multiple recursive calls and recomputes the same subproblems repeatedly.
+- Example of branching recursion: Fibonacci naive recursion (often leads to exponential time).
+- In this program’s naive approach, there is no branching (single subproblem per call), so it remains O(k).
+
+6) Memoization / Top-Down Dynamic Programming explanation
+- The memoized version stores already computed results for V[t].
+- We create memo[t] array where:
+  - memo[t] holds the computed forecast value for year t.
+- Helper function:
+  - If memo[t] is already computed (not NaN), return it.
+  - Otherwise compute it using V[t-1] recursively, store, and return.
+
+7) Time complexity with memoization
+- With memoization, each V[t] for t in [0..k] is computed once.
+- Subsequent requests for the same t return in O(1).
+- Time complexity (memoized recursion):
+  - O(k)
+
+8) Space complexity with memoization
+- memo array size is k+1.
+- Recursion call stack is still O(k).
+- Total space complexity:
+  - O(k) (memo) + O(k) (stack) => O(k)
+
+9) Compare naive vs memoized (summary)
+- Both are O(k) time for this specific recurrence because there is only one subproblem per step.
+- Memoization still demonstrates the standard DP technique and is useful if the recurrence were to branch (recompute subproblems).
+
+10) Example walk-through (brief)
+Given:
+- baseValue = 100
+- growthRates = [0.05, 0.03, 0.04]
+- k = 3
+
+Compute:
+- V[0] = 100
+- V[1] = V[0] * (1 + growthRates[0]) = 100 * 1.05
+- V[2] = V[1] * (1 + growthRates[1])
+- V[3] = V[2] * (1 + growthRates[2])
+
+This is exactly what both forecastRecursive and forecastRecursiveMemo produce.
+
