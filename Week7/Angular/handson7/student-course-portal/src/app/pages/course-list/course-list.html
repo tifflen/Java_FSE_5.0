@@ -1,0 +1,26 @@
+<h2>Course List</h2>
+
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  placeholder="Search course">
+
+<button (click)="searchCourse()">
+  Search
+</button>
+
+<br><br>
+
+@for (course of courses; track course.id) {
+
+<div
+(click)="openCourse(course.id)"
+style="cursor:pointer;border:1px solid black;padding:10px;margin:10px;">
+
+<h3>{{course.name}}</h3>
+
+<p>{{course.code}}</p>
+
+</div>
+
+}
