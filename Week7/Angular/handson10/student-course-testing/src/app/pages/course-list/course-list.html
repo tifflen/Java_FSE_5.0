@@ -1,0 +1,17 @@
+@if (loading$ | async) {
+
+<p class="loading">Loading...</p>
+
+}
+
+@else {
+
+@for(course of (courses$ | async); track course.id){
+
+<div class="course-card">
+  {{course.name}}
+</div>
+
+}
+
+}

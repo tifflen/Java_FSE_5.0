@@ -1,0 +1,15 @@
+<div>
+
+  <h3>{{ course?.name }}</h3>
+
+  <p>{{ course?.code }}</p>
+
+  <p>{{ course?.credits }}</p>
+
+  <p>{{ course?.gradeStatus }}</p>
+
+  <button (click)="enroll()" [disabled]="!course">
+    Enroll
+  </button>
+
+</div>
