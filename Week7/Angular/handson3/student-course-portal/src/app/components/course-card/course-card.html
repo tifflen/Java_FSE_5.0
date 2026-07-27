@@ -1,0 +1,27 @@
+<div appHighlight="lightblue">
+
+  <h2>{{ course.name }}</h2>
+
+  <p>Code : {{ course.code }}</p>
+
+  <p>Credits : {{ course.credits | creditLabel }}</p>
+
+  <div [ngSwitch]="course.gradeStatus">
+
+    <p *ngSwitchCase="'passed'" style="color:green">
+      Passed
+    </p>
+
+    <p *ngSwitchCase="'failed'" style="color:red">
+      Failed
+    </p>
+
+    <p *ngSwitchDefault style="color:gray">
+      Pending
+    </p>
+
+  </div>
+
+</div>
+
+<hr>
