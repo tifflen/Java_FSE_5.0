@@ -1,0 +1,33 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "name": "Angular Updated",
+      "code": "ANG101",
+      "credits": 5,
+      "status": "passed"
+    },
+    {
+      "id": "2",
+      "name": "Java",
+      "code": "JAVA101",
+      "credits": 5,
+      "status": "passed"
+    },
+    {
+      "id": "3",
+      "name": "Spring Boot",
+      "code": "SPR101",
+      "credits": 4,
+      "status": "ongoing"
+    },
+    {
+      "id": "4",
+      "name": "React",
+      "code": "RE101",
+      "credits": 4,
+      "status": "ongoing"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

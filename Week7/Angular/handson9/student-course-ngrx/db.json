@@ -1,0 +1,25 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "name": "Angular",
+      "code": "ANG101",
+      "credits": 4,
+      "status": "ongoing"
+    },
+    {
+      "id": "2",
+      "name": "Java",
+      "code": "JAVA101",
+      "credits": 5,
+      "status": "passed"
+    },
+    {
+      "id": "3",
+      "name": "Spring Boot",
+      "code": "SPR101",
+      "credits": 4,
+      "status": "ongoing"
+    }
+  ]
+}

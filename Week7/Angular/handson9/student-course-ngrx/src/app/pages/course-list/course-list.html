@@ -1,0 +1,52 @@
+<h2>Course List</h2>
+
+<div *ngIf="loading$ | async">
+  Loading...
+</div>
+
+<div *ngIf="error$ | async as error">
+  {{ error }}
+</div>
+
+<table border="1" *ngIf="(courses$ | async) as courses">
+
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Credits</th>
+    <th>Status</th>
+    <th>Enrollment</th>
+  </tr>
+
+  <tr *ngFor="let course of courses">
+
+    <td>{{ course.id }}</td>
+    <td>{{ course.name }}</td>
+    <td>{{ course.code }}</td>
+    <td>{{ course.credits }}</td>
+    <td>{{ course.status }}</td>
+
+    <td>
+
+      <ng-container *ngIf="(enrolledCourseIds$ | async) as enrolledIds">
+
+        <button
+          *ngIf="!enrolledIds.includes(course.id)"
+          (click)="enroll(course.id)">
+          Enroll
+        </button>
+
+        <button
+          *ngIf="enrolledIds.includes(course.id)"
+          (click)="unenroll(course.id)">
+          Unenroll
+        </button>
+
+      </ng-container>
+
+    </td>
+
+  </tr>
+
+</table>

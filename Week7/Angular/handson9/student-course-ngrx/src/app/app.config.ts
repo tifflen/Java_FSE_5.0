@@ -1,0 +1,37 @@
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+
+import { routes } from './app.routes';
+import { courseReducer } from './store/course/course.reducer';
+
+import { provideEffects } from '@ngrx/effects';
+import { CourseEffects } from './store/course/course.effects';
+import { enrollmentReducer } from './store/enrollment/enrollment.reducer';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+
+  provideRouter(routes),
+
+  provideHttpClient(),
+
+ provideStore({
+
+  course: courseReducer,
+
+  enrollment: enrollmentReducer
+
+}),
+
+ provideEffects(CourseEffects),
+
+  provideStoreDevtools({
+    maxAge: 25
+  })
+
+]
+};
