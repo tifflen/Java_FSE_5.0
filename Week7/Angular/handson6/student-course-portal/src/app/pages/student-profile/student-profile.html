@@ -1,0 +1,11 @@
+<h2>Enrolled Courses</h2>
+
+@for(course of enrollmentService.getEnrolledCourses(); track course.id){
+
+<p>{{ course.name }}</p>
+
+} @empty {
+
+<p>No enrolled courses</p>
+
+}

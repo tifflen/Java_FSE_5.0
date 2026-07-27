@@ -1,0 +1,13 @@
+<h3>{{course.name}}</h3>
+
+<p>{{course.code}}</p>
+
+<p>{{course.credits}} Credits</p>
+
+<button (click)="toggleEnrollment()">
+
+{{ enrollmentService.isEnrolled(course.id) ? 'Unenroll' : 'Enroll' }}
+
+</button>
+
+<hr>
