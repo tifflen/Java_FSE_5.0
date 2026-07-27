@@ -1,0 +1,13 @@
+<h2>{{ course.name }}</h2>
+
+<p>Code: {{ course.code }}</p>
+
+<p>Credits: {{ course.credits }}</p>
+
+<p>ID: {{ course.id }}</p>
+
+<button (click)="enrollRequested.emit(course.id)">
+    Enroll
+</button>
+
+<hr>

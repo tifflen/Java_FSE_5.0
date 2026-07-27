@@ -1,0 +1,16 @@
+@for (c of courses; track c.id) {
+
+    <app-course-card
+        [course]="c"
+        (enrollRequested)="onEnroll($event)">
+    </app-course-card>
+
+}
+
+@if(selectedCourseId){
+
+<p>
+    Selected Course ID: {{ selectedCourseId }}
+</p>
+
+}
